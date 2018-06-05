@@ -4,7 +4,8 @@
 import numpy as np
 import solvers
 
-def main():
+
+def test_solvers():
     """Main testing function."""
 
     print("\nTest 1")
@@ -13,6 +14,7 @@ def main():
     xx_expected = np.array([0.666666666666667, 0.416666666666667, -0.5])
     xx_gauss = solvers.gaussian_eliminate(aa, bb)
     _check_result(xx_expected, xx_gauss)
+    assert np.all(np.abs(xx_gauss - xx_expected) < 1e-10)
 
     print("\nTest 2")
     aa = np.array([[2.0, 4.0, 4.0], [1.0, 2.0, -1.0], [5.0, 4.0, 2.0]])
@@ -20,6 +22,7 @@ def main():
     xx_expected = np.array([0.666666666666667, 0.416666666666667, -0.5])
     xx_gauss = solvers.gaussian_eliminate(aa, bb)
     _check_result(xx_expected, xx_gauss)
+    assert np.all(np.abs(xx_gauss - xx_expected) < 1e-10)
 
     print("\nTest 3")
     aa = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]])
@@ -27,6 +30,7 @@ def main():
     xx_expected = None
     xx_gauss = solvers.gaussian_eliminate(aa, bb)
     _check_result(xx_expected, xx_gauss)
+    assert xx_gauss == xx_expected
 
 
 def _check_result(expected, obtained):
@@ -36,5 +40,4 @@ def _check_result(expected, obtained):
 
 
 if __name__ == '__main__':
-    main()# -*- coding: utf-8 -*-
-
+    test_solvers()  # -*- coding: utf-8 -*-
